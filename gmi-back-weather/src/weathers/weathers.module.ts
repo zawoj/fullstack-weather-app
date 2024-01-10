@@ -3,6 +3,7 @@ import { WeathersService } from './weathers.service';
 import { WeathersController } from './weathers.controller';
 import { CacheModule } from '@nestjs/cache-manager';
 import { HttpModule } from '@nestjs/axios';
+import { ApiKeyGuard } from '../auth/guards/apikey.guard';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { HttpModule } from '@nestjs/axios';
     HttpModule,
   ],
   controllers: [WeathersController],
-  providers: [WeathersService],
+  providers: [WeathersService, ApiKeyGuard],
 })
 export class WeathersModule {}
