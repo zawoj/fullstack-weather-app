@@ -8,7 +8,7 @@ import {
 import { WeathersService } from './weathers.service';
 import { FilterWeatherDto } from './dto/filter-weather.dto';
 import { CacheInterceptor } from '@nestjs/cache-manager';
-import { ApiKeyGuard } from 'src/auth/guards/apikey.guard';
+import { ApiKeyGuard } from '../auth/guards/apikey.guard';
 
 @Controller('weathers')
 @UseInterceptors(CacheInterceptor)
