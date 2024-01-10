@@ -9,6 +9,7 @@ import { WeathersService } from './weathers.service';
 import { FilterWeatherDto } from './dto/filter-weather.dto';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 import { ApiKeyGuard } from '../auth/guards/apikey.guard';
+import { WeatherResponseType } from 'types/API';
 
 @Controller('weathers')
 @UseInterceptors(CacheInterceptor)
@@ -17,7 +18,9 @@ export class WeathersController {
 
   @Get('')
   @UseGuards(ApiKeyGuard)
-  findOne(@Body() FilterWeather: FilterWeatherDto) {
-    return this.weathersService.find(FilterWeather);
+  async findOne(
+    @Body() FilterWeather: FilterWeatherDto,
+  ): Promise<WeatherResponseType> {
+    return await this.weathersService.find(FilterWeather);
   }
 }

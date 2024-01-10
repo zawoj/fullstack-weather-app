@@ -76,5 +76,5 @@ export class FilterWeatherDto {
 
   @IsOptional()
   @IsIn(['standard', 'metric', 'imperial'])
-  units?: string;
+  units?: string = 'metric';
 }
