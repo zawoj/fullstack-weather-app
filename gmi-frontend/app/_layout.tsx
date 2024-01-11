@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { View, useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
 import { AppProvider } from "../context";
+import React from "react";
 
 export { ErrorBoundary } from "expo-router";
 
