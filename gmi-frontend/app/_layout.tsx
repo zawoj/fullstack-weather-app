@@ -8,18 +8,15 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
 import { useEffect } from "react";
 import { View, useColorScheme } from "react-native";
+import Colors from "../constants/Colors";
+import { AppProvider } from "../context";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "/",
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -28,7 +25,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -51,39 +47,44 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{
-            title: "GMI WEATHER APP",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-            // Settings modal
-            headerRight: () => (
-              <FontAwesome.Button
-                name='gear'
-                backgroundColor='#f4511e'
-                size={24}
-                style={{
-                  paddingLeft: 18,
-                }}
-                onPress={() => {
-                  router.push("/modal");
-                }}
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name='modal'
-          options={{
-            presentation: "modal",
+      <AppProvider>
+        <Stack>
+          <Stack.Screen
+            name='index'
+            options={{
+              title: "GMI WEATHER APP",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+              headerRight: () => (
+                <FontAwesome.Button
+                  name='gear'
+                  backgroundColor={
+                    colorScheme === "dark"
+                      ? Colors.dark.secondaryColor
+                      : Colors.light.secondaryColor
+                  }
+                  size={24}
+                  style={{
+                    paddingLeft: 18,
+                  }}
+                  onPress={() => {
+                    router.push("/modal");
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name='modal'
+            options={{
+              presentation: "modal",
 
-            title: "Settings",
-          }}
-        />
-      </Stack>
+              title: "Settings",
+            }}
+          />
+        </Stack>
+      </AppProvider>
     </ThemeProvider>
   );
 }
