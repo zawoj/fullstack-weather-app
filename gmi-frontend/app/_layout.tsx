@@ -69,18 +69,34 @@ function RootLayoutNav() {
                     paddingLeft: 18,
                   }}
                   onPress={() => {
-                    router.push("/modal");
+                    router.push("/settings");
                   }}
                 />
               ),
             }}
           />
           <Stack.Screen
-            name='modal'
+            name='settings'
             options={{
               presentation: "modal",
 
               title: "Settings",
+            }}
+          />
+          <Stack.Screen
+            name='map'
+            options={{
+              presentation: "modal",
+
+              title: "Map",
+            }}
+          />
+          <Stack.Screen
+            name='filters'
+            options={{
+              presentation: "modal",
+
+              title: "Filters",
             }}
           />
         </Stack>

@@ -23,25 +23,30 @@ type AppContextType = {
   loading: boolean;
   error: null | string;
   weather: null | WeatherResponseType;
+  filters: FiltersType;
   getWeather: (filters: FiltersType) => Promise<void>;
+  setFilters: (filters: FiltersType) => void;
 };
 
 type AppStateType = {
   loading: boolean;
   error: null | string;
   weather: null | WeatherResponseType;
+  filters: FiltersType;
 };
 
 enum Types {
   INITIAL = "INITIAL",
   GETWEATHER = "GETWEATHER",
   SETERROR = "SETERROR",
+  SETFILTERS = "SETFILTERS",
 }
 
 type Payload = {
   [Types.INITIAL]: { weather: WeatherResponseType };
   [Types.GETWEATHER]: { weather: WeatherResponseType };
   [Types.SETERROR]: { error: string };
+  [Types.SETFILTERS]: { filters: FiltersType };
 };
 
 type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];

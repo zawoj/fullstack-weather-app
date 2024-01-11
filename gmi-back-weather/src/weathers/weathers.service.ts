@@ -27,6 +27,8 @@ export class WeathersService {
 
       if (filterWeatherDto.units) {
         url += `&units=${filterWeatherDto.units}`;
+      } else {
+        url += `&units=metric`;
       }
 
       if (filterWeatherDto.lang) {

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 import { Text, View } from "../components/Themed";
 
-export default function ModalScreen() {
+export default function ModalSettings() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Color mode</Text>
