@@ -1,7 +1,7 @@
 import {
-  Body,
   Controller,
   Get,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -11,9 +11,9 @@ import { CacheInterceptor } from '@nestjs/cache-manager';
 import { ApiKeyGuard } from '../auth/guards/apikey.guard';
 import {
   ApiBadRequestResponse,
-  ApiBody,
   ApiOkResponse,
   ApiOperation,
+  ApiQuery,
   ApiResponse,
 } from '@nestjs/swagger';
 import {
@@ -33,7 +33,7 @@ export class WeathersController {
     description: 'Example response',
     type: WeatherResponseSchema,
   })
-  @ApiBody({
+  @ApiQuery({
     description: 'Filters',
     type: FilterWeatherDto,
   })
@@ -43,7 +43,7 @@ export class WeathersController {
     type: WeatherBadResponseSchema,
   })
   async findOne(
-    @Body() FilterWeather: FilterWeatherDto,
+    @Query() FilterWeather: FilterWeatherDto,
   ): Promise<WeatherResponseSchema> {
     return await this.weathersService.find(FilterWeather);
   }
