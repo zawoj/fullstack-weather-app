@@ -36,18 +36,18 @@ type SysType = {
   sunset: number;
 };
 
-export type WeatherResponseType = {
-  coord: CoordType;
-  weather: WeatherType[];
-  base: string;
-  main: MainType;
-  visibility: number;
-  wind: WindType;
-  clouds: CloudsType;
-  dt: number;
-  sys: SysType;
-  timezone: number;
-  id: number;
-  name: string;
-  cod: number;
+enum UnitsEnum {
+  METRIC = 'metric',
+  IMPERIAL = 'imperial',
+  STANDARD = 'standard',
+}
+
+export {
+  CoordType,
+  WeatherType,
+  MainType,
+  WindType,
+  CloudsType,
+  SysType,
+  UnitsEnum,
 };

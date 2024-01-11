@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsLatitude,
@@ -6,20 +7,41 @@ import {
   IsOptional,
   IsIn,
 } from 'class-validator';
+import { UnitsEnum } from 'types/API';
 
 export class FilterWeatherDto {
+  @ApiProperty({
+    description: 'City name',
+    example: 'Warsaw',
+    format: 'string',
+  })
   @ValidateIf((o) => !o.lat && !o.lon)
   @IsString()
   location?: string;
 
+  @ApiProperty({
+    description: 'Latitude',
+    example: 52.2298,
+    format: 'number',
+  })
   @ValidateIf((o) => !o.location)
   @IsLatitude()
   lat?: number;
 
+  @ApiProperty({
+    description: 'Longitude',
+    example: 21.0118,
+    format: 'number',
+  })
   @ValidateIf((o) => !o.location)
   @IsLongitude()
   lon?: number;
 
+  @ApiProperty({
+    description: 'Language',
+    example: 'en',
+    format: 'string',
+  })
   @IsOptional()
   @IsIn([
     'af',
@@ -74,7 +96,12 @@ export class FilterWeatherDto {
   ])
   lang?: string;
 
+  @ApiProperty({
+    description: 'Units',
+    example: 'metric',
+    enum: ['standard', 'metric', 'imperial'],
+  })
   @IsOptional()
   @IsIn(['standard', 'metric', 'imperial'])
-  units?: string = 'metric';
+  units?: UnitsEnum = UnitsEnum.METRIC;
 }

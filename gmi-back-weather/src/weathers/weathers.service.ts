@@ -1,14 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { FilterWeatherDto } from './dto/filter-weather.dto';
 import { HttpService } from '@nestjs/axios';
-import { WeatherResponseType } from 'types/API';
 import { firstValueFrom } from 'rxjs';
+import { WeatherResponseSchema } from './schema/weathers.schema';
 
 @Injectable()
 export class WeathersService {
   constructor(private httpService: HttpService) {}
 
-  async find(filterWeatherDto: FilterWeatherDto): Promise<WeatherResponseType> {
+  async find(
+    filterWeatherDto: FilterWeatherDto,
+  ): Promise<WeatherResponseSchema> {
     try {
       const apiKey = process.env.OPENWEATHERMAP_API_KEY;
       let url = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -34,7 +36,7 @@ export class WeathersService {
       const { data } = await firstValueFrom(this.httpService.get(url));
       return data;
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
 }
