@@ -75,7 +75,6 @@ export function AppProvider({ children }: Props) {
       url.searchParams.append("lang", filters.lang);
     }
 
-    console.log(url);
     try {
       const response = await fetch(url.toString(), { headers });
 

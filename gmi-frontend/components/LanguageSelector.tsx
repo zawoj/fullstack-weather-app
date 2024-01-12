@@ -35,6 +35,7 @@ const LanguageSelector = () => {
       <Picker
         selectedValue={selectedLanguage}
         onValueChange={(itemValue, itemIndex) => onLanguageChange(itemValue)}
+        testID='language-picker'
       >
         <Picker.Item label='English' value='en' />
         <Picker.Item label='Polish' value='pl' />
