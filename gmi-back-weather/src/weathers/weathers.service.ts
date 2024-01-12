@@ -38,7 +38,14 @@ export class WeathersService {
       const { data } = await firstValueFrom(this.httpService.get(url));
       return data;
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      if (error.response.data.cod === '404') {
+        throw new HttpException(
+          error.response.data.message,
+          HttpStatus.NOT_FOUND,
+        );
+      } else {
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, useColorScheme } from "react-native";
 import { useAppContext } from "../context/use-app-context";
 import Colors from "../constants/Colors";
 import { i18n } from "./LanguageSelector";
+import { router } from "expo-router";
 
 const LocationFilter = () => {
   const [text, setText] = useState("");
@@ -26,14 +27,15 @@ const LocationFilter = () => {
           colorScheme === "dark" ? Colors.dark.text : Colors.light.text
         }
         returnKeyType='search'
-        onSubmitEditing={() =>
+        onSubmitEditing={() => {
           setFilters({
             ...filters,
             location: text,
             lat: undefined,
             lon: undefined,
-          })
-        }
+          });
+          router.push("/");
+        }}
       />
     </View>
   );

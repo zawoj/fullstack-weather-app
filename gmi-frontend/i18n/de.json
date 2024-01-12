@@ -17,5 +17,6 @@
   "sunrise": "Sonnenaufgang",
   "sunset": "Sonnenuntergang",
   "language": "Sprache",
-  "settings": "Einstellungen"
+  "settings": "Einstellungen",
+  "error": "Es ist ein Fehler aufgetreten."
 }

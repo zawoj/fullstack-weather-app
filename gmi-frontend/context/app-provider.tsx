@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useReducer, useCallback, useMemo } from "react";
 import {
   ActionsType,
@@ -73,13 +71,28 @@ export function AppProvider({ children }: Props) {
       url.searchParams.append("units", filters.units);
     }
 
+    if (filters.lang) {
+      url.searchParams.append("lang", filters.lang);
+    }
+
+    console.log(url);
     try {
       const response = await fetch(url.toString(), { headers });
+
       const weather = await response.json();
+
+      if (!response.ok) {
+        throw new Error(JSON.stringify(weather));
+      }
 
       dispatch({
         type: Types.GETWEATHER,
         payload: { weather },
+      });
+
+      dispatch({
+        type: Types.SETERROR,
+        payload: { error: "" },
       });
     } catch (error) {
       let errorMessage = "Unknown error occurred";

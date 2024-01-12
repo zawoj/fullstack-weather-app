@@ -17,5 +17,6 @@
   "sunrise": "Sunrise",
   "sunset": "Sunset",
   "language": "Language",
-  "settings": "Settings"
+  "settings": "Settings",
+  "error": "Error"
 }
