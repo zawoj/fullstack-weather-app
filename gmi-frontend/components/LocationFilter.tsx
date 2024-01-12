@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet, useColorScheme } from "react-native";
 import { useAppContext } from "../context/use-app-context";
 import Colors from "../constants/Colors";
+import { i18n } from "./LanguageSelector";
 
 const LocationFilter = () => {
   const [text, setText] = useState("");
-  const { setFilters } = useAppContext();
+  const { setFilters, filters } = useAppContext();
   const colorScheme = useColorScheme();
 
   return (
@@ -20,13 +21,14 @@ const LocationFilter = () => {
         ]}
         onChangeText={setText}
         value={text}
-        placeholder='Wpisz nazwę lokalizację'
+        placeholder={i18n.t("enter-name-location")}
         placeholderTextColor={
           colorScheme === "dark" ? Colors.dark.text : Colors.light.text
         }
         returnKeyType='search'
         onSubmitEditing={() =>
           setFilters({
+            ...filters,
             location: text,
             lat: undefined,
             lon: undefined,

@@ -7,11 +7,13 @@ import {
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, router } from "expo-router";
 import { useEffect } from "react";
-import { View, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
 import { AppProvider } from "../context";
 import React from "react";
 
+import { i18n } from "../components/LanguageSelector";
+import { useAppContext } from "../context/use-app-context";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -45,6 +47,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const { filters } = useAppContext();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -77,19 +80,11 @@ function RootLayoutNav() {
             }}
           />
           <Stack.Screen
-            name='settings'
-            options={{
-              presentation: "modal",
-
-              title: "Settings",
-            }}
-          />
-          <Stack.Screen
             name='map'
             options={{
               presentation: "modal",
 
-              title: "Map",
+              title: i18n.t("map"),
             }}
           />
           <Stack.Screen
@@ -97,7 +92,15 @@ function RootLayoutNav() {
             options={{
               presentation: "modal",
 
-              title: "Filters",
+              title: i18n.t("filters"),
+            }}
+          />
+          <Stack.Screen
+            name='settings'
+            options={{
+              presentation: "modal",
+
+              title: i18n.t("settings"),
             }}
           />
         </Stack>

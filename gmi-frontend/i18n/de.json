@@ -1,0 +1,21 @@
+{
+  "map": "Karte",
+  "filters": "Filter",
+  "loading": "Laden...",
+  "weather-for": "Wetter für: ",
+  "continue": "Fortsetzen",
+  "enter-name-location": "Geben Sie den Namen des Ortes ein",
+  "search-by-name": "Nach Namen suchen",
+  "pick-from-map": "Von der Karte wählen",
+  "temperature": "Temperatur",
+  "perceived": "Gefühlt",
+  "pressure": "Druck",
+  "humidity": "Luftfeuchtigkeit",
+  "conditions": "Bedingungen",
+  "wind": "Wind",
+  "direction": "Richtung",
+  "sunrise": "Sonnenaufgang",
+  "sunset": "Sonnenuntergang",
+  "language": "Sprache",
+  "settings": "Einstellungen"
+}

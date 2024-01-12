@@ -1,0 +1,21 @@
+{
+  "map": "Map",
+  "filters": "Filters",
+  "loading": "Loading...",
+  "weather-for": "Weather for: ",
+  "continue": "Continue",
+  "enter-name-location": "Enter the name of the location",
+  "search-by-name": "Search by name",
+  "pick-from-map": "Pick from Map",
+  "temperature": "Temperature",
+  "perceived": "Perceived",
+  "pressure": "Pressure",
+  "humidity": "Humidity",
+  "conditions": "Conditions",
+  "wind": "Wind",
+  "direction": "direction",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "language": "Language",
+  "settings": "Settings"
+}

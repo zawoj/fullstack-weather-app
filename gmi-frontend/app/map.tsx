@@ -4,13 +4,14 @@ import { Button, StyleSheet, View } from "react-native";
 import Colors from "../constants/Colors";
 import { useAppContext } from "../context/use-app-context";
 import { router } from "expo-router";
+import i18n from "../i18n/config";
 
 export default function ModalMap() {
   const [selectedCoordinate, setSelectedCoordinate] = useState<null | {
     latitude: number;
     longitude: number;
   }>(null);
-  const { setFilters } = useAppContext();
+  const { setFilters, filters } = useAppContext();
 
   const handleMapPress = (e: MapPressEvent) => {
     setSelectedCoordinate(e.nativeEvent.coordinate);
@@ -36,12 +37,13 @@ export default function ModalMap() {
         }}
       >
         <Button
-          title='Continue'
+          title={`${i18n.t("continue")}`}
           color={Colors.dark.secondaryColor}
           disabled={!selectedCoordinate}
           onPress={() => {
             if (selectedCoordinate)
               setFilters({
+                ...filters,
                 location: undefined,
                 lat: selectedCoordinate.latitude,
                 lon: selectedCoordinate.longitude,

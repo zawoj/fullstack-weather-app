@@ -10,6 +10,7 @@ import {
 import { API_URL } from "../constants/API";
 import { AppContext } from "./app-context";
 import { UnitsEnum } from "../types/weather";
+import i18n from "../i18n/config";
 
 const initialState: AppStateType = {
   weather: null,
@@ -17,6 +18,7 @@ const initialState: AppStateType = {
   filters: {
     location: "Warsaw",
     units: UnitsEnum.METRIC,
+    lang: i18n.locale,
   },
   error: "",
 };
@@ -92,6 +94,10 @@ export function AppProvider({ children }: Props) {
   }, [state.filters]);
 
   const setFilters = (filters: FiltersType) => {
+    if (filters.lang) {
+      i18n.locale = filters.lang;
+    }
+
     dispatch({
       type: Types.SETFILTERS,
       payload: { filters },

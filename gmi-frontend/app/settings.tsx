@@ -1,11 +1,15 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
+import { LanguageSelector, i18n } from "../components/LanguageSelector";
+import { useAppContext } from "../context/use-app-context";
 
 export default function ModalSettings() {
+  const { filters } = useAppContext();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Color mode</Text>
+      <Text style={styles.title}>{i18n.t("language")}</Text>
+      <LanguageSelector />
     </View>
   );
 }

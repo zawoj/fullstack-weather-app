@@ -9,6 +9,7 @@ import { UnitsEnum } from "../types/weather";
 import WeatherIcon from "../components/WeatherIcon";
 import WeatherDetails from "../components/WeatherInformation";
 import ModalPicker from "../components/ModalPicker";
+import { LanguageSelector, i18n } from "../components/LanguageSelector";
 
 export default function TabOneScreen() {
   const { getWeather, weather, filters } = useAppContext();
@@ -22,7 +23,7 @@ export default function TabOneScreen() {
   if (!weather || !filters) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Loading...</Text>
+        <Text style={styles.title}>{i18n.t("loading")}</Text>
       </View>
     );
   }
@@ -30,7 +31,9 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <ModalPicker />
-      <Text style={styles.title}>Pogoda dla: {weather.name}</Text>
+      <Text style={styles.title}>
+        {i18n.t("weather-for")} {weather.name}
+      </Text>
       <WeatherIcon iconId={weather.weather[0].icon} />
       <View
         style={styles.separator}
