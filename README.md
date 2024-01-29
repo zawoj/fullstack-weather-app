@@ -1,4 +1,4 @@
-# GMI WEATHER APP (nie dokumentacja)
+# WEATHER APP (nie dokumentacja)
 
 ## Opis
 
